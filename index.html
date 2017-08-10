@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Spider-Hang-Man</title>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href=“assets/css/style.css”>
+</head>
+
+<body>
+	<id = game>
+	<img src = "assets/images/Spider-man-logo1.png" height=300px; width=600px>
+	<h1>Hangman</h1>
+<!-- For HTML, include header, 2 columns, a background gradient, and a starting image and text -->
+<script>
+// <!-- Have computer assigned to a preset selection of words (an array?) as the solution -->
+	var spiderArray = ["Peter Parker", "Green Goblin", "Daily Bugle", "Spider Sense", "Gwen Stacy", "Venom", "Avenger", "Web Slinger"];
+
+	var spiderWord = spiderArray[Math.floor(Math.random() * spiderArray.length)];
+
+	var answerArray = [];
+
+	for (var i = 0; i < spiderWord.length; i++) {
+		answerArray[i] = "_"
+	};
+
+	var remainingLetters = spiderWord.length;
+
+	while (remainingLetters > 0) {
+		var getGame = document.getElementById("game");
+
+		getGame.innerHTML = answerArray.join(" ");
+
+		var userGuess = event.key;
+
+		for (var j = 0; j < spiderWord.length; j++) {
+			if (spiderWord[j] === userGuess) {
+				answerArray[j] = userGuess;
+				remainingLetters--;
+			}
+		}
+	};
+
+
+	getGame.innerHTML = answerArray.join(" ");
+
+	alert("You are 8 legs of excellent, great job!")
+
+
+
+
+
+	// var wins = 0
+
+	// var losses = 0
+
+	// var guessNumber = 6
+
+</script>	
+</body>
+</html>
