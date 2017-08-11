@@ -23,7 +23,7 @@
   				<div class = "col-md-2"></div>
   				<div class = "col-md-1"></div>
   				<div class = "col-md-3">
-  					<button type="button" class="btn btn-primary btn-lg">Click for New Game</button>
+  					<button type="button" class="btn btn-primary btn-lg">New Game</button>
   				</div>
   				<div class = "col-md-2"></div>
   				<div class = "col-md-2"></div>
@@ -37,7 +37,7 @@
 
 	var losses = 0
 
-	var guessNumber = 6
+	var guessNumber = 7
 
 	var spiderArray = ["Peter Parker", "Green Goblin", "Daily Bugle", "Spider Sense", "Gwen Stacy", "Venom", "Avenger", "Web Slinger"];
 
@@ -52,33 +52,37 @@
 		spiderWord = spiderArray[Math.floor(Math.random() * spiderArray.length)];
 		// Split random word letters into separate array
 		answerArray = spiderWord.split("");
-
+		// Create placeholders for each index of the split word so it's an underline
 		for (var i = 0; i < answerArray.length; i++) {
 		answerArrayPlaceholders[i] = "_"
-		}
-
+		};
+		// Removing commas separating each index
 		answerArrayPlaceholderSpace = answerArrayPlaceholders.join(" ");
 		// Write this to the html
-
-	});
-
-	document.onkeyup = function(event) {
-      var userGuess = event.key;
-      
-
-    }
-
-
 	
 
-	alert("You are 8 legs of excellent, great job!")
-
-// On New Game button press trigger newGame function
-
-
-
-
-
+		document.onkeyup = function(event) {
+			// User types a key and that is the letter registered
+	      var userGuess = event.key.toLowerCase();
+	      // If the letter matches one of the letters in the word, replace the underline with it.
+	      for (var i = 0; i < answerArray.length; i++) {
+	                if (userGuess === answerArray[i]) {
+	                    answerArrayPlaceholders[i] = userGuess;
+	                }
+	               	// If the keystroke does not match the letter, the number of guesses goes down.
+	                if (userGuess !== answerArray[i]) {
+	                	guessNumber--;
+	                }
+	                // If all of the placeholders are replaced with the letters in the array, you win!
+	                if (answerArrayPlaceholders === answerArray.length){
+	                	alert("You are 8 legs of excellent! Great job!")
+	                }
+	                // If the number of guesses hits 0, it's game over and you have to click the button to start over.
+	                if (guessNumber === 0) {
+	                	alert("Saving the city isn't easy! Click on New Game to try again!")
+	                } 
+	    };    } 
+    });
 </script>	
 </body>
 </html>
