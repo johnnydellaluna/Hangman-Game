@@ -3,59 +3,81 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Spider-Hang-Man</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href=“assets/css/style.css”>
+
+
 </head>
 
 <body>
-	<id = game>
-	<img src = "assets/images/Spider-man-logo1.png" height=300px; width=600px>
-	<h1>Hangman</h1>
-<!-- For HTML, include header, 2 columns, a background gradient, and a starting image and text -->
-<script>
-// <!-- Have computer assigned to a preset selection of words (an array?) as the solution -->
+	<div id= "game">
+		<div class="jumbotron">
+			<div class = "row">
+				<div class = "col-md-3"></div>
+				<div class = "col-md-4"><img src = "assets/images/Spider-man-logo1.png" height=300px; width=600px></div>
+				<div class = "col-md-3"></div>
+			</div>
+  			<h1 class = "text-center">HANGMAN</h1>
+  			<div class = "row">
+  				<div class = "col-md-2"></div>
+  				<div class = "col-md-2"></div>
+  				<div class = "col-md-1"></div>
+  				<div class = "col-md-3">
+  					<button type="button" class="btn btn-primary btn-lg">Click for New Game</button>
+  				</div>
+  				<div class = "col-md-2"></div>
+  				<div class = "col-md-2"></div>
+  			</div>
+		</div>
+	</div>
+
+<script type="text/javascript">
+
+	var wins = 0
+
+	var losses = 0
+
+	var guessNumber = 6
+
 	var spiderArray = ["Peter Parker", "Green Goblin", "Daily Bugle", "Spider Sense", "Gwen Stacy", "Venom", "Avenger", "Web Slinger"];
+
+	var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "_"];
 
 	var spiderWord = spiderArray[Math.floor(Math.random() * spiderArray.length)];
 
 	var answerArray = [];
 
-	for (var i = 0; i < spiderWord.length; i++) {
-		answerArray[i] = "_"
-	};
+	$(".btn btn-primary btn-lg").on("click", function newGame() {
+		// Add guessNumber and wins and losses variables onscreen
+		spiderWord = spiderArray[Math.floor(Math.random() * spiderArray.length)];
+		// Split random word letters into separate array
+		answerArray = spiderWord.split("");
 
-	var remainingLetters = spiderWord.length;
-
-	while (remainingLetters > 0) {
-		var getGame = document.getElementById("game");
-
-		getGame.innerHTML = answerArray.join(" ");
-
-		var userGuess = event.key;
-
-		for (var j = 0; j < spiderWord.length; j++) {
-			if (spiderWord[j] === userGuess) {
-				answerArray[j] = userGuess;
-				remainingLetters--;
-			}
+		for (var i = 0; i < answerArray.length; i++) {
+		answerArrayPlaceholders[i] = "_"
 		}
-	};
+
+		answerArrayPlaceholderSpace = answerArrayPlaceholders.join(" ");
+		// Write this to the html
+
+	});
+
+	document.onkeyup = function(event) {
+      var userGuess = event.key;
+      
+
+    }
 
 
-	getGame.innerHTML = answerArray.join(" ");
+	
 
 	alert("You are 8 legs of excellent, great job!")
 
+// On New Game button press trigger newGame function
 
 
 
 
-	// var wins = 0
-
-	// var losses = 0
-
-	// var guessNumber = 6
 
 </script>	
 </body>
